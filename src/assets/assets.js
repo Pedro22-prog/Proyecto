@@ -1,4 +1,5 @@
 import basket_icon from './basket_icon.png'
+import logo_unimet from './logo_unimet.png'
 import logo from './logo.png'
 import header_img from './header_img.png'
 import search_icon from './search_icon.png'
@@ -79,7 +80,8 @@ import parcel_icon from './parcel_icon.png'
      profile_icon,
      logout_icon,
      bag_icon,
-     parcel_icon
+     parcel_icon,
+     logo_unimet
  }
 
  export const menu_list = [
