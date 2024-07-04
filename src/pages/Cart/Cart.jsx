@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import './Cart.css'
-import { StoreContext } from '../../context/StoreContext'
+import  { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Cart.css';
+import { StoreContext } from '../../context/StoreContext';
 
 const Cart = () => {
-
   const { cartItems, food_list, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
-
   const navigate = useNavigate();
+  console.log("Cart Items:", cartItems);
 
   return (
     <div className='cart'>
@@ -24,20 +24,20 @@ const Cart = () => {
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div>
+              <div key={index}>
                 <div className="cart-items-title cart-items-item">
                   <img src={item.image} alt="" />
                   <p>{item.name}</p>
                   <p>{item.price}</p>
                   <p>{cartItems[item._id]}</p>
                   <p>${item.price * cartItems[item._id]}</p>
-                  <p onClick={()=>removeFromCart(item._id)} className='cross'>x</p>
+                  <p onClick={() => removeFromCart(item._id)} className='cross'>x</p>
                 </div>
                 <hr />
               </div>
-
-            )
+            );
           }
+          return null;
         })}
       </div>
       <div className="cart-bottom">
@@ -46,7 +46,7 @@ const Cart = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount}</p>
+              <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
@@ -54,20 +54,20 @@ const Cart = () => {
               <b>${getTotalCartAmount()}</b>
             </div>
           </div>
-          <button onClick={()=>navigate('/order')}>PROCEDER AL PAGO</button>
+          <button onClick={() => navigate('/order')}>PROCEDER AL PAGO</button>
         </div>
         <div className="cart-promocode">
           <div>
             <p>Si tienes un codigo de promo, Insertelo aqui</p>
             <div className="cart-promocode-input">
-              <input type="text" placeholder='promo-code'/>
+              <input type="text" placeholder='promo-code' />
               <button>Aplicar</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Cart
+export default Cart;
